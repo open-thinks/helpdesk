@@ -90,6 +90,7 @@ public class PageTemplateServiceImpl implements TemplateMarkService {
 		}
 	}
 
+	@Override
 	public void addTemplateSource(TemplateProvider provider) {
 		List<TemplateLocation> locations = provider.getTemplateLations();
 

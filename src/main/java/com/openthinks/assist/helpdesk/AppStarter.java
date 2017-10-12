@@ -5,7 +5,6 @@ import java.io.File;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
 
-import com.openthinks.assist.helpdesk.util.MapDBHelper;
 import com.openthinks.assist.helpdesk.util.StaticDict;
 import com.openthinks.libs.utilities.logger.ProcessLogger;
 
@@ -72,9 +71,10 @@ public final class AppStarter {
 			sDbPath = argstr.substring(start, end).replace(StaticDict.DB_ARGUMENT_PREFIX, "");
 			return sDbPath;
 		} catch (Exception e) {
-			ProcessLogger.warn("Use default db path[" + MapDBHelper.getStoreDBPath() + "] for " + e);
+//			ProcessLogger.warn("Use default db path[" + MapDBHelper.getStoreDBPath() + "] for " + e);
 		}
-		return MapDBHelper.getStoreDBPath();
+//		return MapDBHelper.getStoreDBPath();
+		return "";
 	}
 
 	protected static void startServer(int port, String rootPath, String dbPath) throws Exception, InterruptedException {
@@ -82,8 +82,8 @@ public final class AppStarter {
 		WebAppContext webAppContext = new WebAppContext();
 		webAppContext.setContextPath(rootPath);
 		if (dbPath != null) {
-			File dbFile = new File(dbPath);
-			MapDBHelper.setUp(dbFile);
+//			File dbFile = new File(dbPath);
+//			MapDBHelper.setUp(dbFile);
 		}
 		/* Important: Use getResource */
 		String webxmlLocation = AppStarter.class.getResource("/webapp/WEB-INF/web.xml").toString();

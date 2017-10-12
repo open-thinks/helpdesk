@@ -9,7 +9,10 @@
 	<url>https://gitlab.com/daileyet/helpdesk.git</url>
 	<properties>
 		<project.easyweb.version>1.2</project.easyweb.version>
+		<project.libs.sql.version>2.0</project.libs.sql.version>
 		<jetty.version>9.2.15.v20160210</jetty.version>
+		<derby.version>10.11.1.1</derby.version>
+		<freemarker.version>2.3.23</freemarker.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -19,10 +22,11 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.apache.derby/derby -->
 		<dependency>
-			<groupId>org.mapdb</groupId>
-			<artifactId>mapdb</artifactId>
-			<version>3.0.1</version>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<version>${derby.version}</version>
 		</dependency>
 
 		<dependency>
@@ -30,6 +34,13 @@
 			<artifactId>easyweb</artifactId>
 			<version>${project.easyweb.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.openthinks.libs</groupId>
+			<artifactId>sql</artifactId>
+			<version>${project.libs.sql.version}</version>
+		</dependency>
+
 
 		<!-- Jetty Webapp -->
 		<dependency>
@@ -39,11 +50,11 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
 		<dependency>
-		    <groupId>org.freemarker</groupId>
-		    <artifactId>freemarker</artifactId>
-		    <version>2.3.23</version>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>${freemarker.version}</version>
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>
@@ -65,6 +76,15 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.5.1</version>
 				<configuration>
@@ -73,14 +93,7 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.7</version>
-				<configuration>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
+
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>

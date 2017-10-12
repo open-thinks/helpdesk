@@ -22,7 +22,6 @@
 package com.openthinks.assist.helpdesk;
 
 import com.openthinks.assist.helpdesk.model.base.view.ViewModel;
-import com.openthinks.assist.helpdesk.util.MapDBHelper;
 import com.openthinks.easyweb.annotation.configure.EasyConfigure;
 import com.openthinks.easyweb.annotation.configure.RequestSuffixs;
 import com.openthinks.easyweb.annotation.configure.ScanPackages;
@@ -47,7 +46,7 @@ public class EasyWebConfigure implements Bootstrap {
   public void initial() {
     ProcessLogger.debug(getClass() + " initial...");
     WebHandlerFactory.register(WebMethodResponse.build(ViewModel.class), new ViewModelMappingWebHandler());
-    ProcessLogger.info("Use DB location path:" + MapDBHelper.getStoreDBPath());
+//    ProcessLogger.info("Use DB location path:" + MapDBHelper.getStoreDBPath());
   }
 
   @Override
