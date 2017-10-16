@@ -1,0 +1,13 @@
+body {
+  padding-top: 50px;
+}
+
+#desk{
+	background-color: #28A4C9;
+	padding-top: 5px;
+}
+#left-panel{
+	padding: 0px;
+	max-height: 300px;
+	overflow-y: auto;
+}

@@ -1,0 +1,151 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.openthinks.assit</groupId>
+	<artifactId>helpdesk</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>helpdesk</name>
+	<url>https://gitlab.com/daileyet/helpdesk.git</url>
+	<properties>
+		<project.easyweb.version>1.2.1</project.easyweb.version>
+		<project.libs.sql.version>2.0.1</project.libs.sql.version>
+		<jetty.version>9.2.15.v20160210</jetty.version>
+		<derby.version>10.11.1.1</derby.version>
+		<freemarker.version>2.3.23</freemarker.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.derby/derby -->
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<version>${derby.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.openthinks</groupId>
+			<artifactId>easyweb</artifactId>
+			<version>${project.easyweb.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.openthinks.libs</groupId>
+			<artifactId>sql</artifactId>
+			<version>${project.libs.sql.version}</version>
+		</dependency>
+
+
+		<!-- Jetty Webapp -->
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-webapp</artifactId>
+			<version>${jetty.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>${freemarker.version}</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<directory>src/main</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+					<exclude>**/resources/**</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.5.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>java</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<mainClass>com.openthinks.assist.helpdesk.AppStarter</mainClass>
+					<workingDirectory>${project.build.directory}\classes</workingDirectory>
+					<includeProjectDependencies>true</includeProjectDependencies>
+					<arguments>
+						<argument>-port:7799</argument>
+						<argument>-ctx:/</argument>
+					</arguments>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.3</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<transformers>
+						<transformer
+							implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+							<mainClass>com.openthinks.assist.helpdesk.AppStarter</mainClass>
+						</transformer>
+					</transformers>
+					<filters>
+						<filter>
+							<artifact>*:*</artifact>
+							<excludes>
+								<exclude>META-INF/*.SF</exclude>
+								<exclude>META-INF/*.DSA</exclude>
+								<exclude>META-INF/*.RSA</exclude>
+							</excludes>
+						</filter>
+					</filters>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
