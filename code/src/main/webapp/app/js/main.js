@@ -1,77 +1,90 @@
 function getTree() {
 var tree = [
   {
-    text: "Parent 1",
+    text: "Quick Tools",
     nodes: [
       {
-        text: "Child 1",
+        text: "Dev",
         nodes: [
           {
-            text: "Grandchild 1"
+            text: "Eclipse"
           },
           {
-            text: "Grandchild 2"
+            text: "Atom"
           }
         ]
       },
       {
-        text: "Child 2"
+        text: "Email"
       }
     ]
   },
   {
-    text: "Parent 2"
+    text: "Notes",
+    nodes: [
+      {
+        text: "MarkDown",
+        nodes: [
+          {
+            text: "Set up Dev env"
+          },
+          {
+            text: "Getting started"
+          }
+        ]
+      },
+      {
+        text: "PDF"
+      },
+      {
+        text: "WORD"
+      }
+    ]
   },
   {
-    text: "Parent 3"
-  },
-  {
-    text: "Parent 4"
-  },
-  {
-    text: "Parent 5"
-  },
-  {
-    text: "Parent 5"
-  },
-  {
-    text: "Parent 5"
-  },
-  {
-    text: "Parent 5"
-  },
-  {
-    text: "Parent 5"
-  },
-  {
-    text: "Parent 5"
-  },
-  {
-    text: "Parent 5"
-  },
-  {
-    text: "Parent 5"
-  },
-  {
-    text: "Parent 5"
-  },
-  {
-    text: "Parent 5"
-  },
-  {
-    text: "Parent 5"
-  },
-  {
-    text: "Parent 5"
-  },
-  {
-    text: "Parent 5"
-  },
-  {
-    text: "Parent 5"
+    text: "Quick Links",
+    nodes: [
+      {
+        text: "Broswer",
+        nodes: [
+          {
+            text: "Java"
+          },
+          {
+            text: "Github"
+          }
+        ]
+      },
+      {
+        text: "Local ShortLink"
+      }
+    ]
   }
+  
 ];
 return tree;
 }
 
 $('#tree').treeview({data: getTree()});
+
+function setFullHeight($panel){
+	var total = document.documentElement.clientHeight;
+	var deskHeight = total-$panel[0].offsetTop;
+	$panel[0].height=deskHeight+"px";
+	$panel.css({
+		"max-height":deskHeight+"px",
+		"height":deskHeight+"px"
+	});
+}
+
+$(function(){
+	setFullHeight($("#desk"));
+	setFullHeight($("#left-panel"));
+	setFullHeight($("#main-panel"));
+	
+	$(window).resize(function(){
+		setFullHeight($("#desk"));
+		setFullHeight($("#left-panel"));
+		setFullHeight($("#main-panel"));
+	});
+});

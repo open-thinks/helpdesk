@@ -16,8 +16,14 @@ body {
 
 #main-panel{
 	padding: 0px;
-	overflow-y: auto;
+	overflow-y: hidden;
 	height: 100%;
 	padding-left: 5px;
 	background-color: #FFFFFF;
+}
+
+#main-content{
+	height: 100%;
+	width: 100%;
+	border:0;
 }

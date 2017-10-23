@@ -14,4 +14,10 @@ public class IndexController {
 	public ViewModel index() {
 		return new ViewModel("index.html");
 	}
+	
+	@Mapping("/item/new")
+	@ResponseReturn(contentType = ResponseReturnType.TEXT_HTML)
+	public ViewModel item_new() {
+		return new ViewModel("item_new.html");
+	}
 }

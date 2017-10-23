@@ -1,7 +1,5 @@
 package com.openthinks.assist.helpdesk;
 
-import java.io.File;
-
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
 
@@ -71,9 +69,7 @@ public final class AppStarter {
 			sDbPath = argstr.substring(start, end).replace(StaticDict.DB_ARGUMENT_PREFIX, "");
 			return sDbPath;
 		} catch (Exception e) {
-//			ProcessLogger.warn("Use default db path[" + MapDBHelper.getStoreDBPath() + "] for " + e);
 		}
-//		return MapDBHelper.getStoreDBPath();
 		return "";
 	}
 
@@ -82,8 +78,6 @@ public final class AppStarter {
 		WebAppContext webAppContext = new WebAppContext();
 		webAppContext.setContextPath(rootPath);
 		if (dbPath != null) {
-//			File dbFile = new File(dbPath);
-//			MapDBHelper.setUp(dbFile);
 		}
 		/* Important: Use getResource */
 		String webxmlLocation = AppStarter.class.getResource("/webapp/WEB-INF/web.xml").toString();

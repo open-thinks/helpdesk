@@ -59,7 +59,7 @@ class ViewModelMappingWebHandler implements WebHandler,TemplateProvider {
 
 		@Override
 		public List<TemplateLocation> getTemplateLations() {
-			return TemplateLocation.valueOfSingleList(getClass(), "/page");
+			return TemplateLocation.valueOfSingleList(getClass(), "/webapp/app/page");
 		}
 
 	}

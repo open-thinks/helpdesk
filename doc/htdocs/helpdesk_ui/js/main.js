@@ -65,7 +65,13 @@ var tree = [
 return tree;
 }
 
-$('#tree').treeview({data: getTree()});
+$('#tree').treeview({
+	data: getTree(),
+	onNodeSelected:function(event,data){
+		console.log(event);
+		console.log(data);
+	}
+});
 
 function setFullHeight($panel){
 	var total = document.documentElement.clientHeight;

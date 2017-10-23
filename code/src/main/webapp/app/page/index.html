@@ -36,14 +36,27 @@
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
+          <ul class="nav navbar-nav navbar-right">
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="#"><span class="glyphicon glyphicon-plus"></span> Category/Item</a></li>
+		            <li><a href="#"><span class="glyphicon glyphicon-remove text-danger"></span> Category/Item</a></li>
+		            <li role="separator" class="divider"></li>
+		            <li><a href="#">Setting</a></li>
+		          </ul>
+		         </li>
+          </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 	
 	<div class="container-fluid" id="desk">
-		<div class="row">
-			<div class="col-md-3" id="left-panel"><div id="tree"></div></div>
-			<div class="col-md-9" id="main-panel">content</div>
+		<div class="row" style="height: 100%;">
+			<div class="col-xs-3" id="left-panel"><div id="tree"></div></div>
+			<div class="col-xs-9" id="main-panel">
+				<iframe id="main-content" name="main-content" src="/item/new.htm" ></iframe>
+			</div>
 		</div>
 	</div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
