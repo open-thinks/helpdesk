@@ -1,9 +1,13 @@
-package com.openthinks.assist.helpdesk;
+package com.openthinks.assist.helpdesk.web;
+
+import java.io.File;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
 
 import com.openthinks.assist.helpdesk.util.StaticDict;
+import com.openthinks.libs.sql.lang.Configurator;
+import com.openthinks.libs.sql.lang.ConfiguratorFactory;
 import com.openthinks.libs.utilities.logger.ProcessLogger;
 
 /**
@@ -14,10 +18,13 @@ public final class AppStarter {
 	public static final AppInfo APPINFO = new AppInfo();
 
 	public static final class AppInfo {
-		private String context= StaticDict.DEFAULT_CONTEXT_PATH;
-		private int port=StaticDict.DEFAULT_PORT_NUM;
-		private String dbPath=StaticDict.DEFAULT_DB_FILE_PATH;
-		private AppInfo() {}
+		private String context = StaticDict.DEFAULT_CONTEXT_PATH;
+		private int port = StaticDict.DEFAULT_PORT_NUM;
+		private String dbCfgPath = StaticDict.DEFAULT_DB_CFG_FILE_PATH;
+
+		private AppInfo() {
+		}
+
 		public String getContext() {
 			return context;
 		}
@@ -26,8 +33,12 @@ public final class AppStarter {
 			return port;
 		}
 
-		public String getDbPath() {
-			return dbPath;
+		public String getDbCfgPath() {
+			return dbCfgPath;
+		}
+
+		public File getDbCfgFile() {
+			return new File(getDbCfgPath());
 		}
 
 		private void setContext(String context) {
@@ -38,8 +49,8 @@ public final class AppStarter {
 			this.port = port;
 		}
 
-		private void setDbPath(String dbPath) {
-			this.dbPath = dbPath;
+		private void setDbCfgPath(String dbPath) {
+			this.dbCfgPath = dbPath;
 		}
 
 	}
@@ -50,15 +61,15 @@ public final class AppStarter {
 			return;
 		int port = getProtArg(args);
 		String rootPath = getRootContext(args);
-		String dbPath = getDBPath(args);
+		String dbCfgPath = getDBCfgPath(args);
 		APPINFO.setPort(port);
 		APPINFO.setContext(rootPath);
-		APPINFO.setDbPath(dbPath);
-		startServer(port, rootPath, dbPath);
+		APPINFO.setDbCfgPath(dbCfgPath);
+		startServer(port, rootPath, dbCfgPath);
 	}
 
-	private static String getDBPath(String[] args) {
-		String sDbPath = null;
+	private static String getDBCfgPath(String[] args) {
+		String sDbCfgPath = StaticDict.DEFAULT_DB_CFG_FILE_PATH;
 		try {
 			String argstr = String.join(StaticDict.DELIMITER, args);
 			int start = argstr.indexOf(StaticDict.DB_ARGUMENT_PREFIX);
@@ -66,18 +77,29 @@ public final class AppStarter {
 			if (end == -1) {
 				end = argstr.length();
 			}
-			sDbPath = argstr.substring(start, end).replace(StaticDict.DB_ARGUMENT_PREFIX, "");
-			return sDbPath;
+			sDbCfgPath = argstr.substring(start, end).replace(StaticDict.DB_ARGUMENT_PREFIX, "");
+			return sDbCfgPath;
 		} catch (Exception e) {
 		}
-		return "";
+		return sDbCfgPath;
 	}
 
-	protected static void startServer(int port, String rootPath, String dbPath) throws Exception, InterruptedException {
+	protected static void startServer(int port, String rootPath, String dbCfgPath)
+			throws Exception, InterruptedException {
 		Server server = new Server(port);
 		WebAppContext webAppContext = new WebAppContext();
 		webAppContext.setContextPath(rootPath);
-		if (dbPath != null) {
+		if (dbCfgPath != null) {
+			Configurator cfg = null;
+			try {
+				cfg = ConfiguratorFactory.getInstance(APPINFO.getDbCfgFile());
+			} catch (Exception e) {
+				cfg = ConfiguratorFactory.getDefaultInstance();
+			}
+			if(cfg!=null) {ProcessLogger.debug(cfg.toString());}
+			else {
+				ProcessLogger.warn("Could not find db config file.");
+			}
 		}
 		/* Important: Use getResource */
 		String webxmlLocation = AppStarter.class.getResource("/webapp/WEB-INF/web.xml").toString();
@@ -152,7 +174,7 @@ public final class AppStarter {
 		System.out.println("3.Assign port and root path");
 		System.out.println("java -jar nbctrl.jar -port:8080 -ctx:/");
 		System.out.println();
-		System.out.println("4.Assign port,root path and db path");
-		System.out.println("java -jar nbctrl.jar -port:8080 -ctx:/ -db:/dbpath/dbfile");
+		System.out.println("4.Assign port,root path and db config path");
+		System.out.println("java -jar nbctrl.jar -port:8080 -ctx:/ -db:/dbcfgpath/dbconfig.properties");
 	}
 }

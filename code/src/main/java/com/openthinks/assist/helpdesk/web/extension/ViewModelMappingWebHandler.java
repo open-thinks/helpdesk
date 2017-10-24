@@ -1,4 +1,4 @@
-package com.openthinks.assist.helpdesk;
+package com.openthinks.assist.helpdesk.web.extension;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,10 +11,11 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.openthinks.assist.helpdesk.model.base.view.ViewModel;
-import com.openthinks.assist.helpdesk.service.TemplateMarkService;
-import com.openthinks.assist.helpdesk.service.TemplateMarkService.TemplateLocation;
-import com.openthinks.assist.helpdesk.service.impl.PageTemplateServiceImpl;
+import com.openthinks.assist.helpdesk.web.TemplateProvider;
+import com.openthinks.assist.helpdesk.web.model.base.view.ViewModel;
+import com.openthinks.assist.helpdesk.web.service.TemplateMarkService;
+import com.openthinks.assist.helpdesk.web.service.TemplateMarkService.TemplateLocation;
+import com.openthinks.assist.helpdesk.web.service.impl.PageTemplateServiceImpl;
 import com.openthinks.easyweb.WebUtils;
 import com.openthinks.easyweb.annotation.process.objects.WebMethod;
 import com.openthinks.easyweb.context.WebContexts;
@@ -59,7 +60,7 @@ class ViewModelMappingWebHandler implements WebHandler,TemplateProvider {
 
 		@Override
 		public List<TemplateLocation> getTemplateLations() {
-			return TemplateLocation.valueOfSingleList(getClass(), "/webapp/app/page");
+			return TemplateLocation.valueOfSingleList(getClass(), "/webapp/WEB-INF/page");
 		}
 
 	}

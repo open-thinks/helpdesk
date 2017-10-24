@@ -1,4 +1,4 @@
-package com.openthinks.assist.helpdesk.model.shell;
+package com.openthinks.assist.helpdesk.web.model.shell;
 
 public interface KeyGenerator {
 	

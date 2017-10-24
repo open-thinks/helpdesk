@@ -1,11 +1,11 @@
-package com.openthinks.assist.helpdesk.service;
+package com.openthinks.assist.helpdesk.web.service;
 
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import com.openthinks.assist.helpdesk.TemplateProvider;
+import com.openthinks.assist.helpdesk.web.TemplateProvider;
 
 import freemarker.template.Template;
 

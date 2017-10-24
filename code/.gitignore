@@ -1,1 +1,6 @@
 /target/
+/hddb/
+.settings
+.project
+derby.log
+.classpath

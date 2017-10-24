@@ -1,6 +1,6 @@
-package com.openthinks.assist.helpdesk.controller;
+package com.openthinks.assist.helpdesk.web.controller;
 
-import com.openthinks.assist.helpdesk.model.base.view.ViewModel;
+import com.openthinks.assist.helpdesk.web.model.base.view.ViewModel;
 import com.openthinks.easyweb.annotation.Controller;
 import com.openthinks.easyweb.annotation.Mapping;
 import com.openthinks.easyweb.annotation.ResponseReturn;

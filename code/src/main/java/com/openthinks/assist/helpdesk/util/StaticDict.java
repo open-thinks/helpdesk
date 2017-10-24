@@ -54,13 +54,13 @@ public interface StaticDict {
 	String COMMAND_ARGS_PATTERN = "cmd_arg[1-9]\\d*";
 
 	String DEFAULT_DATE_FORMAT_STYLE = "yyyy-MM-dd HH:mm";
-	String STORE_DB = "nbctrl.odb";
+	String DEFAULT_DB_CFG = "dbconfig.properties";
 	String DISK_STORE_CMD_GROUP = "cmd_grp_disk";
 	String DISK_STORE_CMD_COMMAND = "cmd_disk";
 	String DISK_STORE_RELATIONSHIP = "ship_disk";
 	String DEFAULT_COMMAND_GROUP_NAME = "%&^*((*)()(%$#@OJ)_SD)A_";
 
-	String DEFAULT_DB_FILE_PATH = new File(System.getProperty("user.dir"), StaticDict.STORE_DB).getAbsolutePath();
+	String DEFAULT_DB_CFG_FILE_PATH = new File(System.getProperty("user.dir"), StaticDict.DEFAULT_DB_CFG).getAbsolutePath();
 	String PARAM_GRP_NAME = "grp_name";
 	String PARAM_GRP_DESC = "grp_desc";
 	String ATTRIBUTE_APP_PORT = "app_port";

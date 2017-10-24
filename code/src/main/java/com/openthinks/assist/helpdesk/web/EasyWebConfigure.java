@@ -19,17 +19,17 @@
  * @date Sep 29, 2016
  * @version V1.0
  */
-package com.openthinks.assist.helpdesk;
+package com.openthinks.assist.helpdesk.web;
 
-import com.openthinks.assist.helpdesk.model.base.view.ViewModel;
+import com.openthinks.assist.helpdesk.web.extension.WebHandlerExtension;
 import com.openthinks.easyweb.annotation.configure.EasyConfigure;
 import com.openthinks.easyweb.annotation.configure.RequestSuffixs;
 import com.openthinks.easyweb.annotation.configure.ScanPackages;
 import com.openthinks.easyweb.annotation.configure.ScanWay;
 import com.openthinks.easyweb.annotation.configure.ScanWay.ScanWayEnum;
-import com.openthinks.easyweb.annotation.process.objects.WebMethodResponse;
 import com.openthinks.easyweb.context.Bootstrap;
-import com.openthinks.easyweb.context.handler.WebHandlerFactory;
+import com.openthinks.easyweb.context.WebContexts;
+import com.openthinks.libs.sql.dao.ConnectionManager;
 import com.openthinks.libs.utilities.logger.ProcessLogger;
 
 /**
@@ -37,7 +37,7 @@ import com.openthinks.libs.utilities.logger.ProcessLogger;
  *
  */
 @EasyConfigure
-@ScanPackages({"com.openthinks.assist.helpdesk"})
+@ScanPackages({"com.openthinks.assist.helpdesk.web"})
 @ScanWay(ScanWayEnum.ADVANCE)
 @RequestSuffixs(".do,.htm")
 public class EasyWebConfigure implements Bootstrap {
@@ -45,13 +45,15 @@ public class EasyWebConfigure implements Bootstrap {
   @Override
   public void initial() {
     ProcessLogger.debug(getClass() + " initial...");
-    WebHandlerFactory.register(WebMethodResponse.build(ViewModel.class), new ViewModelMappingWebHandler());
-//    ProcessLogger.info("Use DB location path:" + MapDBHelper.getStoreDBPath());
+    WebContexts.get().lookupIf(WebHandlerExtension.class).ifPresent(ext->ext.active());
+    
   }
 
   @Override
   public void cleanUp() {
     ProcessLogger.debug(getClass() + " clean up...");
+    //TODO clean other things
+    ConnectionManager.destroyIfUsePool();
   }
 
 }

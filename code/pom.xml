@@ -54,19 +54,42 @@
 			<artifactId>freemarker</artifactId>
 			<version>${freemarker.version}</version>
 		</dependency>
-
 	</dependencies>
+	
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<db.driver>org.apache.derby.jdbc.EmbeddedDriver</db.driver>
+				<db.url>jdbc:derby:hddb;create=true</db.url>
+				<db.user>sa</db.user>
+				<db.pwd>P@ssw0rd</db.pwd>
+				<db.type>DERBY</db.type>
+				<db.bypool>true</db.bypool>
+				<db.pool.impl></db.pool.impl>
+				<db.max.active>20</db.max.active>
+				<db.max.idle>5</db.max.idle>
+				<exec.main.class>com.openthinks.assist.helpdesk.web.AppStarter</exec.main.class>
+				<pack.main.class>com.openthinks.assist.helpdesk.web.AppStarter</pack.main.class>
+			</properties>
+		</profile>
+	</profiles>
 
 	<build>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
 				<excludes>
 					<exclude>**/*.java</exclude>
 				</excludes>
 			</resource>
 			<resource>
 				<directory>src/main</directory>
+				<filtering>false</filtering>
 				<excludes>
 					<exclude>**/*.java</exclude>
 					<exclude>**/resources/**</exclude>
@@ -106,7 +129,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<mainClass>com.openthinks.assist.helpdesk.AppStarter</mainClass>
+					<mainClass>${exec.main.class}</mainClass>
 					<workingDirectory>${project.build.directory}\classes</workingDirectory>
 					<includeProjectDependencies>true</includeProjectDependencies>
 					<arguments>
@@ -131,7 +154,7 @@
 					<transformers>
 						<transformer
 							implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-							<mainClass>com.openthinks.assist.helpdesk.AppStarter</mainClass>
+							<mainClass>${pack.main.class}</mainClass>
 						</transformer>
 					</transformers>
 					<filters>

@@ -1,12 +1,8 @@
-/*
- * Copyright (c) 2017, Robert Bosch (Suzhou) All Rights Reserved. This software is property of
- * Robert Bosch (Suzhou). Unauthorized duplication and disclosure to third parties is prohibited.
- */
-package com.openthinks.assist.helpdesk;
+package com.openthinks.assist.helpdesk.web;
 
 import java.util.List;
 
-import com.openthinks.assist.helpdesk.service.TemplateMarkService.TemplateLocation;
+import com.openthinks.assist.helpdesk.web.service.TemplateMarkService.TemplateLocation;
 
 /**
  * ClassName: TemplateProvider <br/>

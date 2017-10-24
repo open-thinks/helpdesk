@@ -46,7 +46,7 @@
   </listener>
   <context-param>
     <param-name>configureClassName</param-name>
-    <param-value>com.openthinks.assist.helpdesk.EasyWebConfigure</param-value>
+    <param-value>com.openthinks.assist.helpdesk.web.EasyWebConfigure</param-value>
   </context-param>
   <!-- <context-param>
     <param-name>easywebClassDir</param-name>

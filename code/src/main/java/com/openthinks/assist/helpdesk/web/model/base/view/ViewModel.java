@@ -1,4 +1,4 @@
-package com.openthinks.assist.helpdesk.model.base.view;
+package com.openthinks.assist.helpdesk.web.model.base.view;
 
 import java.util.HashMap;
 
