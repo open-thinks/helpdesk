@@ -89,4 +89,8 @@ public final class StaticUtils {
 	public static String UUID() {
 		return java.util.UUID.randomUUID().toString();
 	}
+	
+	public static RuntimeException pressException(Exception e) {
+		return new RuntimeException(e);
+	}
 }

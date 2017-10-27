@@ -22,6 +22,7 @@
 package com.openthinks.assist.helpdesk.web;
 
 import com.openthinks.assist.helpdesk.web.extension.WebHandlerExtension;
+import com.openthinks.assist.helpdesk.web.service.micro.DatabaseInitiationService;
 import com.openthinks.easyweb.annotation.configure.EasyConfigure;
 import com.openthinks.easyweb.annotation.configure.RequestSuffixs;
 import com.openthinks.easyweb.annotation.configure.ScanPackages;
@@ -46,7 +47,7 @@ public class EasyWebConfigure implements Bootstrap {
   public void initial() {
     ProcessLogger.debug(getClass() + " initial...");
     WebContexts.get().lookupIf(WebHandlerExtension.class).ifPresent(ext->ext.active());
-    
+    WebContexts.get().lookupIf(DatabaseInitiationService.class).ifPresent(ser->ser.server());
   }
 
   @Override

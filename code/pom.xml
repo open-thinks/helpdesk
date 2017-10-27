@@ -64,7 +64,7 @@
 			</activation>
 			<properties>
 				<db.driver>org.apache.derby.jdbc.EmbeddedDriver</db.driver>
-				<db.url>jdbc:derby:hddb;create=true</db.url>
+				<db.url>jdbc:derby:hddb</db.url>
 				<db.user>sa</db.user>
 				<db.pwd>P@ssw0rd</db.pwd>
 				<db.type>DERBY</db.type>
@@ -93,6 +93,7 @@
 				<excludes>
 					<exclude>**/*.java</exclude>
 					<exclude>**/resources/**</exclude>
+					<exclude>**/etc/**</exclude>
 				</excludes>
 			</resource>
 		</resources>
