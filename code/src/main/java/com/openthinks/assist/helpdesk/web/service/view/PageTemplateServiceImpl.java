@@ -1,4 +1,4 @@
-package com.openthinks.assist.helpdesk.web.service.impl;
+package com.openthinks.assist.helpdesk.web.service.view;
 
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -10,7 +10,6 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import com.openthinks.assist.helpdesk.web.TemplateProvider;
-import com.openthinks.assist.helpdesk.web.service.TemplateMarkService;
 import com.openthinks.libs.utilities.logger.ProcessLogger;
 
 import freemarker.cache.ClassTemplateLoader;

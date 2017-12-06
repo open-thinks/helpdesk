@@ -1,4 +1,4 @@
-package com.openthinks.assist.helpdesk.web.service;
+package com.openthinks.assist.helpdesk.web.service.view;
 
 import java.io.Serializable;
 import java.util.Arrays;

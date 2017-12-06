@@ -2,7 +2,7 @@ package com.openthinks.assist.helpdesk.web;
 
 import java.util.List;
 
-import com.openthinks.assist.helpdesk.web.service.TemplateMarkService.TemplateLocation;
+import com.openthinks.assist.helpdesk.web.service.view.TemplateMarkService.TemplateLocation;
 
 /**
  * ClassName: TemplateProvider <br/>

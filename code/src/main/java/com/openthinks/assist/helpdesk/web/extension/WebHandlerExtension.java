@@ -8,6 +8,7 @@ import com.openthinks.easyweb.annotation.process.objects.WebMethodResponse;
 import com.openthinks.easyweb.context.handler.WebHandlerFactory;
 
 /**
+ * WebHandler extension for Easyweb framework
  * @author dailey.yet@outlook.com
  *
  */

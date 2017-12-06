@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.openthinks.assist.helpdesk.web.TemplateProvider;
 import com.openthinks.assist.helpdesk.web.model.base.view.ViewModel;
-import com.openthinks.assist.helpdesk.web.service.TemplateMarkService;
-import com.openthinks.assist.helpdesk.web.service.TemplateMarkService.TemplateLocation;
-import com.openthinks.assist.helpdesk.web.service.impl.PageTemplateServiceImpl;
+import com.openthinks.assist.helpdesk.web.service.view.PageTemplateServiceImpl;
+import com.openthinks.assist.helpdesk.web.service.view.TemplateMarkService;
+import com.openthinks.assist.helpdesk.web.service.view.TemplateMarkService.TemplateLocation;
 import com.openthinks.easyweb.WebUtils;
 import com.openthinks.easyweb.annotation.process.objects.WebMethod;
 import com.openthinks.easyweb.context.WebContexts;

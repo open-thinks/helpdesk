@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
 
-import com.openthinks.assist.helpdesk.web.model.persistence.Items;
+import com.openthinks.assist.helpdesk.web.model.persistence.Item;
 import com.openthinks.libs.sql.dao.ConnectionManager;
 import com.openthinks.libs.sql.dhibernate.Session;
 import com.openthinks.libs.sql.dhibernate.support.SessionFactory;
@@ -33,7 +33,7 @@ public class DerbySqllibTest {
 	public static void testDelete() {
 		System.out.println("delete item");
 		Session session =  SessionFactory.getSession();
-		Items item = new Items();
+		Item item = new Item();
 		item.setId(12345678L);
 		session.delete(item);
 		session.close();
@@ -42,7 +42,7 @@ public class DerbySqllibTest {
 	public static void testSave() {
 		System.out.println("save item");
 		Session session =  SessionFactory.getSession();
-		Items item = new Items();
+		Item item = new Item();
 		item.setId(12345678L);
 		item.setName("Test");
 		item.setContent("abcdefjdddddddddddddddddddddddd中文测试\r\nddddddddddddddddddddddddddddd");
@@ -54,7 +54,7 @@ public class DerbySqllibTest {
 	
 	public static void testList() {
 		Session session =  SessionFactory.getSession();
-		List<Items> items =session.list(Items.class);
+		List<Item> items =session.list(Item.class);
 		System.out.println("print all items:"+items.size());
 		items.stream().forEach(item->{System.out.println(item);
 		});
@@ -63,7 +63,7 @@ public class DerbySqllibTest {
 	
 	public static void testLoad() {
 		Session session =  SessionFactory.getSession();
-		Items item = session.load(Items.class, 12345678L);
+		Item item = session.load(Item.class, 12345678L);
 		assert item != null;
 		System.out.println(item);
 		Timestamp tm = item.getCreateTime();

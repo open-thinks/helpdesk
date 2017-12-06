@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.openthinks.assist.helpdesk.util.StaticUtils;
-import com.openthinks.assist.helpdesk.web.service.MicroService;
 import com.openthinks.libs.sql.dao.ConnectionManager;
 import com.openthinks.libs.sql.lang.Configurator;
 import com.openthinks.libs.sql.lang.ConfiguratorFactory;

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.openthinks.assist.helpdesk.web.service;
+package com.openthinks.assist.helpdesk.web.service.micro;
 
 /**
  * @author dailey.yet@outlook.com
